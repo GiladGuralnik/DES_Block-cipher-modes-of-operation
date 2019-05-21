@@ -2,7 +2,7 @@ from DES import *
 
 
 def encrypt_des_ecb_mode(plaintext, key, rounds_number):
-    result = "0x"
+    result = ""
     i = 0
     while i < len(plaintext):
         block = plaintext[i:i+8]
@@ -12,8 +12,7 @@ def encrypt_des_ecb_mode(plaintext, key, rounds_number):
 
 
 def decrypt_des_ecb_mode(plaintext, key, rounds_number):
-    plaintext = plaintext[2:]
-    result = "0x"
+    result = ""
     i = 0
     while i < len(plaintext)-2:
         block = plaintext[i:i+16]
@@ -23,7 +22,7 @@ def decrypt_des_ecb_mode(plaintext, key, rounds_number):
     return result
 
 
-msg = "Hermionee"
+msg = "Hermioneeee!!@$%RD$$$%55533"
 key = "d1D3!7$%"
 res = encrypt_des_ecb_mode(msg, key, 16)
 print("enc: " + res)
