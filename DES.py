@@ -325,7 +325,7 @@ def encrypt_des_one_block(block, keys, rounds_number):
     return ''.join(result)
 
 
-def encrypt_des(plaintext, key, rounds_number):
+def encrypt_des(block, key, rounds_number):
     bin_key = string_to_binary(key)
     c, d = make_c_and_d(bin_key)
 
@@ -343,9 +343,6 @@ def encrypt_des(plaintext, key, rounds_number):
         shifted_cd_after_pc_2 = mapping(shifted_cd, PC_2)
         keys.append(shifted_cd_after_pc_2)
 
-    # convert to binary and split plain text to 64 bit blocks and operate DES on any of them
-    bin_text = string_to_binary(plaintext)
-    block = list(bin_text)
     result = ""
     if len(block) != 64:
         print("EXPAND BLOCK (ENC)")
@@ -382,7 +379,7 @@ def decrypt_des_one_block(block, keys, rounds_number):
     return ''.join(result)
 
 
-def decrypt_des(hex_cypher_text, key, rounds_number):
+def decrypt_des(block, key, rounds_number):
     bin_key = string_to_binary(key)
     c, d = make_c_and_d(bin_key)
 
@@ -402,9 +399,7 @@ def decrypt_des(hex_cypher_text, key, rounds_number):
     
     keys.reverse()
     
-    # convert to binary and split plain text to 64 bit blocks and operate DES on any of them
-    bin_text = hex_to_binary(hex_cypher_text)
-    block = list(bin_text)
+
     result = ""
     if len(block) != 64:
             print("EXPAND BLOCK (DEC)")
