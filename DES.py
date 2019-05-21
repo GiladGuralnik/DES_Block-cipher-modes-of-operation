@@ -450,8 +450,10 @@ msg = "Hermione"
 key = "d1D3!7$%"
 
 
+################ THIS EXAMPLE IS NOT WORKING ANYMORE ####################!!!!!!!!!!!
+
 # encrypt_des - receive string msg and string key and rounds number => returns hex encrypted msg
-msg_encrypted_hex = encrypt_des(msg, key, 16)  # CHANGE ROUND NUMBER
+#msg_encrypted_hex = encrypt_des(msg, key, 16)  # CHANGE ROUND NUMBER
 
 
 # decrypt_des - receive hex string encrypted msg and string key and rounds number => returns hex decrypted msg
@@ -463,3 +465,4 @@ msg_encrypted_hex = encrypt_des(msg, key, 16)  # CHANGE ROUND NUMBER
 #
 #
 # print("The original plaintext: " + hex_to_ascii(msg_decrypted_hex))
+# https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation
