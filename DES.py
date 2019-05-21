@@ -345,13 +345,12 @@ def encrypt_des(plaintext, key, rounds_number):
 
     # convert to binary and split plain text to 64 bit blocks and operate DES on any of them
     bin_text = string_to_binary(plaintext)
-    bin_text_64blocks = split_to_blocks(bin_text, 64)
+    block = list(bin_text)
     result = ""
-    for block in bin_text_64blocks:
-        if len(block) != 64:
-            print("EXPAND BLOCK (ENC)")
-            block = expand_to_64bit(block)
-        result += encrypt_des_one_block(block, keys, rounds_number)
+    if len(block) != 64:
+        print("EXPAND BLOCK (ENC)")
+        block = expand_to_64bit(block)
+    result += encrypt_des_one_block(block, keys, rounds_number)
 
     # convert to hex
     return binary_to_hex(result)
@@ -405,13 +404,12 @@ def decrypt_des(hex_cypher_text, key, rounds_number):
     
     # convert to binary and split plain text to 64 bit blocks and operate DES on any of them
     bin_text = hex_to_binary(hex_cypher_text)
-    bin_text_64blocks = split_to_blocks(bin_text, 64)
+    block = list(bin_text)
     result = ""
-    for block in bin_text_64blocks:
-        if len(block) != 64:
+    if len(block) != 64:
             print("EXPAND BLOCK (DEC)")
             block = expand_to_64bit(block)
-        result += decrypt_des_one_block(block, keys, rounds_number)
+    result += decrypt_des_one_block(block, keys, rounds_number)
 
     # convert from bin to hex
     return hex(int(result, 2))
@@ -462,11 +460,11 @@ msg_encrypted_hex = encrypt_des(msg, key, 16)  # CHANGE ROUND NUMBER
 
 
 # decrypt_des - receive hex string encrypted msg and string key and rounds number => returns hex decrypted msg
-msg_decrypted_hex = decrypt_des(msg_encrypted_hex, key, 16)  # pass hex number as string
+#msg_decrypted_hex = decrypt_des(msg_encrypted_hex, key, 16)  # pass hex number as string
 # hex_to_ascii - tries to convert the ascii string to hex => if succeed prints it, else show error
-print("The originalText: " + ascii_to_hex(msg))
-print("The encryptedText: " + msg_encrypted_hex)
-print("The decryptedText: " + msg_decrypted_hex)
-
-
-print("The original plaintext: " + hex_to_ascii(msg_decrypted_hex))
+# print("The originalText: " + ascii_to_hex(msg))
+# print("The encryptedText: " + msg_encrypted_hex)
+# print("The decryptedText: " + msg_decrypted_hex)
+#
+#
+# print("The original plaintext: " + hex_to_ascii(msg_decrypted_hex))
