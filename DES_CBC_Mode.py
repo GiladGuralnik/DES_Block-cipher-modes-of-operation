@@ -34,3 +34,5 @@ res = encrypt_des_cbc_mode(msg, key, 16)
 print("enc: " + res)
 q = hex_to_ascii(decrypt_des_cbc_mode(iv, res,key,16))
 print("dec: " + q)
+
+#gilad you like penis
