@@ -238,6 +238,27 @@ def XOR48(input, key):
 
     return output
 
+# xor input and key
+def XOR64(input, key):
+    output = [0, 0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0, 0, 0,]
+
+    for i in range(64):
+        if input[i] == key[i] and input[i] == '1':
+            output[i] = '0'
+
+        elif input[i] == key[i]:
+            output[i] = '0'
+        else:
+            output[i] = '1'
+
+    return output
 
 # xor input and key
 def XOR32(input, key):
