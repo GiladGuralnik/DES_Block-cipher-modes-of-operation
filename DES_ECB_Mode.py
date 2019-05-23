@@ -19,7 +19,6 @@ def decrypt_des_ecb_mode(plaintext, key, rounds_number):
     i = 0
     while i < len(plaintext):
         block = plaintext[i:i+16]
-        block = "0x" + block
         # convert to binary and split plain text to 64 bit blocks and operate DES on any of them
         block = hex_to_binary(block)
         block = list(block)

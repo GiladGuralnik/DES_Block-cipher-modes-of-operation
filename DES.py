@@ -426,7 +426,6 @@ def decrypt_des(block, key, rounds_number):
             block = expand_to_64bit(block)
     result += decrypt_des_one_block(block, keys, rounds_number)
 
-    # convert from bin to hex
     return hex(int(result, 2))
 
 
