@@ -114,7 +114,7 @@ def binary_to_string(bits, encoding='utf-8', errors='surrogatepass'):
 
 
 def hex_to_binary(src_hex):
-    src_hex = src_hex[2:]  # remove 0x
+    #src_hex = src_hex[2:]  # remove 0x
     res = ''
     for ch in src_hex:
         res += bin(int(str(ch), 16))[2:].zfill(4)
@@ -344,7 +344,6 @@ def encrypt_des_one_block(block, keys, rounds_number):
     result = right + left
     result = mapping(result, IP_1)
     return ''.join(result)
-
 
 def encrypt_des(block, key, rounds_number):
     bin_key = string_to_binary(key)
