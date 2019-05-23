@@ -365,7 +365,6 @@ def encrypt_des(block, key, rounds_number):
 
     result = ""
     if len(block) != 64:
-        print("EXPAND BLOCK (ENC)")
         block = expand_to_64bit(block)
     result += encrypt_des_one_block(block, keys, rounds_number)
 
@@ -418,11 +417,10 @@ def decrypt_des(block, key, rounds_number):
         keys.append(shifted_cd_after_pc_2)
     
     keys.reverse()
-    
+
 
     result = ""
     if len(block) != 64:
-            print("EXPAND BLOCK (DEC)")
             block = expand_to_64bit(block)
     result += decrypt_des_one_block(block, keys, rounds_number)
 
