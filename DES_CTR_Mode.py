@@ -66,14 +66,14 @@ def decrypt_des_ctr_mode(counter, plaintext, key, rounds_number):
     return result
 
 
-counter = 0
-msg = "HermioneHermion#$@#$#@$C@C@@@@CC@e"
-
-key = "d1D3!7$%"
-res = encrypt_des_ctr_mode(counter, msg, key, 16)
-print("enc: " + res)
-q1 = decrypt_des_ctr_mode(counter, res, key, 16)
-q2 = hex_to_ascii(q1)
-print("dec(bin): " + q1)
-print("dec(ascii): " + q2)
+# counter = 0
+# msg = "HermioneHermion#$@#$#@$C@C@@@@CC@e"
+#
+# key = "d1D3!7$%"
+# res = encrypt_des_ctr_mode(counter, msg, key, 16)
+# print("enc: " + res)
+# q1 = decrypt_des_ctr_mode(counter, res, key, 16)
+# q2 = hex_to_ascii(q1)
+# print("dec(bin): " + q1)
+# print("dec(ascii): " + q2)
 

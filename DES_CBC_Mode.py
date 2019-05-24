@@ -41,11 +41,12 @@ def decrypt_des_cbc_mode(iv, plaintext, key, rounds_number):
 
         res = decrypt_des(block, key, rounds_number)[2:]
         res = list(hex_to_binary(res))
-        if(i==0):
+        if i == 0:
             iv = string_to_binary(iv)
         else:
             iv = hex_to_binary(iv)
         iv = list(iv)
+
         block = XOR64(iv, res)
         # flatten the list to string
         ans = ""
@@ -55,17 +56,3 @@ def decrypt_des_cbc_mode(iv, plaintext, key, rounds_number):
         iv = temp
         i += 16
     return result
-
-
-iv = "mySecret"
-msg = "Hermioneeee!!@$%RD$$$%55533"
-msg = "HermioneHermion#$@#$#@$C@C@@@@CC@e"
-
-key = "d1D3!7$%"
-res = encrypt_des_cbc_mode(iv, msg, key, 16)
-print("enc: " + res)
-q1 = decrypt_des_cbc_mode(iv, res, key, 16)
-q2 = hex_to_ascii(q1)
-print("dec(bin): " + q1)
-print("dec(ascii): " + q2)
-

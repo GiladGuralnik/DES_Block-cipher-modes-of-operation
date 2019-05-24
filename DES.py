@@ -423,8 +423,7 @@ def decrypt_des(block, key, rounds_number):
     if len(block) != 64:
             block = expand_to_64bit(block)
     result += decrypt_des_one_block(block, keys, rounds_number)
-
-    return hex(int(result, 2))
+    return binary_to_hex(result)
 
 
 def ascii_to_hex(str):
@@ -463,23 +462,4 @@ def brute_force_des(plaintext, cypher, rounds_number):
                                         return guess
 
 
-msg = "Hermione"
-key = "d1D3!7$%"
 
-
-################ THIS EXAMPLE IS NOT WORKING ANYMORE ####################!!!!!!!!!!!
-
-# encrypt_des - receive string msg and string key and rounds number => returns hex encrypted msg
-#msg_encrypted_hex = encrypt_des(msg, key, 16)  # CHANGE ROUND NUMBER
-
-
-# decrypt_des - receive hex string encrypted msg and string key and rounds number => returns hex decrypted msg
-#msg_decrypted_hex = decrypt_des(msg_encrypted_hex, key, 16)  # pass hex number as string
-# hex_to_ascii - tries to convert the ascii string to hex => if succeed prints it, else show error
-# print("The originalText: " + ascii_to_hex(msg))
-# print("The encryptedText: " + msg_encrypted_hex)
-# print("The decryptedText: " + msg_decrypted_hex)
-#
-#
-# print("The original plaintext: " + hex_to_ascii(msg_decrypted_hex))
-# https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation

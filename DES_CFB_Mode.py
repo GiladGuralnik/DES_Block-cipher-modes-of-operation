@@ -79,16 +79,4 @@ def decrypt_des_cfb_mode(iv, plaintext, key, rounds_number):
     return result
 
 
-iv = "mySecret"
-msg = "HermioneHermion#$@#$#@$C@C@@@@CC@e"
-msg = "Hermione"
-
-
-key = "d1D3!7$%"
-res = encrypt_des_cfb_mode(iv, msg, key, 16)
-print("enc: " + res)
-q1 = decrypt_des_cfb_mode(iv, res, key, 16)
-q2 = hex_to_ascii(q1)
-print("dec(bin): " + q1)
-print("dec(ascii): " + q2)
 
