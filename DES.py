@@ -217,69 +217,16 @@ def create_selection_table(secondHalf):
 
 
 # xor input and key
-def XOR48(input, key):
-    output = [0, 0, 0, 0, 0, 0,
-              0, 0, 0, 0, 0, 0,
-              0, 0, 0, 0, 0, 0,
-              0, 0, 0, 0, 0, 0,
-              0, 0, 0, 0, 0, 0,
-              0, 0, 0, 0, 0, 0,
-              0, 0, 0, 0, 0, 0,
-              0, 0, 0, 0, 0, 0]
-
-    for i in range(48):
+def XOR(input,key):
+    output = []
+    for i in range(len(input)):
         if input[i] == key[i] and input[i] == '1':
-            output[i] = '0'
+            output.append('0')
 
         elif input[i] == key[i]:
-            output[i] = '0'
+            output.append('0')
         else:
-            output[i] = '1'
-
-    return output
-
-# xor input and key
-def XOR64(input, key):
-    output = [0, 0, 0, 0, 0, 0, 0, 0,
-              0, 0, 0, 0, 0, 0, 0, 0,
-              0, 0, 0, 0, 0, 0, 0, 0,
-              0, 0, 0, 0, 0, 0, 0, 0,
-              0, 0, 0, 0, 0, 0, 0, 0,
-              0, 0, 0, 0, 0, 0, 0, 0,
-              0, 0, 0, 0, 0, 0, 0, 0,
-              0, 0, 0, 0, 0, 0, 0, 0,]
-
-    for i in range(64):
-        if input[i] == key[i] and input[i] == '1':
-            output[i] = '0'
-
-        elif input[i] == key[i]:
-            output[i] = '0'
-        else:
-            output[i] = '1'
-
-    return output
-
-# xor input and key
-def XOR32(input, key):
-    output = [0, 0, 0, 0,
-              0, 0, 0, 0,
-              0, 0, 0, 0,
-              0, 0, 0, 0,
-              0, 0, 0, 0,
-              0, 0, 0, 0,
-              0, 0, 0, 0,
-              0, 0, 0, 0]
-
-    for i in range(32):
-        if input[i] == key[i] and input[i] == '1':
-            output[i] = '0'
-
-        elif input[i] == key[i]:
-            output[i] = '0'
-        else:
-            output[i] = '1'
-
+            output.append('1')
     return output
 
 
@@ -330,7 +277,7 @@ def encrypt_des_one_block(block, keys, rounds_number):
     # the f function
     def f(right, key):
         expanded_right = create_selection_table(right)
-        expanded_right_after_xor = XOR48(key, expanded_right)
+        expanded_right_after_xor = XOR(key, expanded_right)
         right_after_sboxes = sboxes(expanded_right_after_xor)
         right_after_sboxes_and_p = mapping(right_after_sboxes, P)
         return right_after_sboxes_and_p
@@ -339,7 +286,7 @@ def encrypt_des_one_block(block, keys, rounds_number):
     for i in range(rounds_number):
         old_left = left
         left = right
-        right = XOR32(old_left, f(right, keys[i]))
+        right = XOR(old_left, f(right, keys[i]))
 
     result = right + left
     result = mapping(result, IP_1)
@@ -382,7 +329,7 @@ def decrypt_des_one_block(block, keys, rounds_number):
     # the f function
     def f(right, key):
         expanded_right = create_selection_table(right)
-        expanded_right_after_xor = XOR48(key, expanded_right)
+        expanded_right_after_xor = XOR(key, expanded_right)
         right_after_sboxes = sboxes(expanded_right_after_xor)
         right_after_sboxes_and_p = mapping(right_after_sboxes, P)
         return right_after_sboxes_and_p
@@ -391,7 +338,7 @@ def decrypt_des_one_block(block, keys, rounds_number):
     for i in range(rounds_number):
         old_left = left
         left = right
-        right = XOR32(old_left, f(right, keys[i]))  # reverse order keys
+        right = XOR(old_left, f(right, keys[i]))  # reverse order keys
 
     result = right + left
     result = mapping(result, IP_1)

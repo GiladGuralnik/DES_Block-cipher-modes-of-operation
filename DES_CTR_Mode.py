@@ -1,5 +1,6 @@
 from DES import *
 
+
 def encrypt_des_ctr_mode(counter, plaintext, key, rounds_number):
     result = ""
     i = 0
@@ -20,7 +21,7 @@ def encrypt_des_ctr_mode(counter, plaintext, key, rounds_number):
         res = encrypt_des(counter, key, rounds_number)[2:]
 
         res = list(hex_to_binary(res))
-        block = XOR64(block, res)
+        block = XOR(block, res)
         # flatten the block to string
         ans = ""
         for ch in block:
@@ -53,7 +54,7 @@ def decrypt_des_ctr_mode(counter, plaintext, key, rounds_number):
 
         res = list(hex_to_binary(res))
 
-        block = XOR64(block, res)
+        block = XOR(block, res)
 
         # flatten the block to string
         ans = ""

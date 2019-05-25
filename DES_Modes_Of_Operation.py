@@ -1,7 +1,8 @@
 from DES_CFB_Mode import *
 from DES_ECB_Mode import *
+from DES_CTR_Mode import *
 from DES_CBC_Mode import *
-from DES_CBC_Mode import *
+from DES_OFB_Mode import *
 
 counter = 0
 msg = '''
@@ -18,7 +19,8 @@ print("///////////START DES MODES OF OPERATIONS////////////////")
 print("ECB MODE:")
 cipher = encrypt_des_ecb_mode(msg, key, 16)
 print("enc: " + cipher)
-origin = hex_to_ascii(decrypt_des_ecb_mode(cipher, key, 16))
+origin_hex = decrypt_des_ecb_mode(cipher, key, 16)
+origin = hex_to_ascii(origin_hex)
 print("dec: " + origin)
 
 # CBC
@@ -38,12 +40,17 @@ origin = hex_to_ascii(origin_hex)
 print("dec: " + origin)
 
 # OFB
-
+print("OFB MODE:")
+cipher = encrypt_des_ofb_mode(iv, msg, key, 16)
+print("enc: " + cipher)
+origin_hex = decrypt_des_ofb_mode(iv, cipher, key, 16)
+origin = hex_to_ascii(origin_hex)
+print("dec: " + origin)
 
 # CTR
 print("CTR MODE:")
-cipher = encrypt_des_cfb_mode(iv, msg, key, 16)
+cipher = encrypt_des_ctr_mode(counter, msg, key, 16)
 print("enc: " + cipher)
-origin_hex = decrypt_des_cfb_mode(iv, cipher, key, 16)
+origin_hex = decrypt_des_ctr_mode(counter, cipher, key, 16)
 origin = hex_to_ascii(origin_hex)
 print("dec: " + origin)

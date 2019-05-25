@@ -19,7 +19,7 @@ def encrypt_des_cbc_mode(iv, plaintext, key, rounds_number):
         block = list(block)  # convert to list
         if len(block) != 64:
             block = expand_to_64bit(block)
-        block = XOR64(iv, block)
+        block = XOR(iv, block)
 
         iv = encrypt_des(block, key, rounds_number)[2:]
         result += iv
@@ -47,7 +47,7 @@ def decrypt_des_cbc_mode(iv, plaintext, key, rounds_number):
             iv = hex_to_binary(iv)
         iv = list(iv)
 
-        block = XOR64(iv, res)
+        block = XOR(iv, res)
         # flatten the list to string
         ans = ""
         for ch in block:

@@ -27,7 +27,7 @@ def encrypt_des_cfb_mode(iv, plaintext, key, rounds_number):
         iv = encrypt_des(iv, key, rounds_number)[2:]
         iv = list(hex_to_binary(iv))
 
-        block = XOR64(iv, block)
+        block = XOR(iv, block)
 
         # flatten block to string
         ans = ""
@@ -66,7 +66,7 @@ def decrypt_des_cfb_mode(iv, plaintext, key, rounds_number):
         iv = encrypt_des(iv, key, rounds_number)[2:]
         iv = list(hex_to_binary(iv))
 
-        res = XOR64(iv, block)
+        res = XOR(iv, block)
 
         # flatten block to string
         ans = ""
